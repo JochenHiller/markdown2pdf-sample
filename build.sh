@@ -49,6 +49,7 @@ pandoc \
 +strikeout\
 +shortcut_reference_links\
 +auto_identifiers\
++header_attributes\
   \
   --latex-engine=xelatex \
   --include-in-header=customize.tex \
@@ -60,21 +61,13 @@ pandoc \
   --variable papersize:a4paper \
   --variable classoption:openright \
   --variable geometry:"left=2cm, right=2cm, top=3cm, bottom=2cm" \
-  --variable mainfont="Palatino" \
-  --variable sansfont="Helvetica" \
-  --variable monofont="Menlo" \
   --variable fontsize=12pt \
   --variable colorlinks \
   --variable urlcolor=blue \
-  --variable toc-title="XXX" \
-  --metadata date=v01 \
-  --variable version="V01" \
+  --metadata date=v02 \
   --output=../../target/pdf/MarkdownToPDF.pdf \
    metadata.yaml 01_Main.md 02_OpenIssues.md
 set +x
-
-# use that to add current date as version
-#  --metadata date="`date "+%B %e, %Y"`" \
 
 cd ../..
 )

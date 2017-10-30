@@ -128,6 +128,8 @@ We can refer to other chapters, e.g. to "Open Issues". See [Open Issues](#open-i
 
 See https://pandoc.org/MANUAL.html#header-identifiers how headers will be represented as references.
 
+A header can be annotated to have an explicite reference using `## header-text {#refToheader}`.
+
 ## Code Samples
 
 You can include code snippets in different languages. Pandoc extension `+backtick_code_blocks` needs to be enabled. See <https://pandoc.org/MANUAL.html#fenced-code-blocks>
@@ -202,10 +204,20 @@ Table: References (as Grid Table)
 | <https://rawgit.com/fletcher/human-markdown-reference/master/index.html>  | MultiMarkdown Cheat-Sheet |
 +---------------------------------------------------------------------------+-----------------------------+
 
+## Controlling page flow
+
+With the plain `\newpage` LaTeX instruction a new page can be enforced. With the `\breakpage` a conditional page break can be defined.
+
+See chapter [References](#referencesLinks) for a sample.
+
+For more details see <https://tex.stackexchange.com/questions/736/pagebreak-vs-newpage>.
+
+
+\newpage
 
 # Appendix
 
-## References
+## References {#referencesLinks}
 
 This chapter contains useful links to external resources. As unordered list with multiple indentation.
 

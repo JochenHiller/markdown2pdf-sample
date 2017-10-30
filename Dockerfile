@@ -2,6 +2,14 @@ FROM debian:stretch
 
 MAINTAINER Jochen Hiller <jo.hiller@gmail.com>
 
+
+# packages required
+#   texlive-base, minimal packages
+#   texlive-xetec, needed for pandoc
+#   lmodern, needed for modern fonts
+#   texlive-fonts-recommended, needed for Metric font
+#   texlive-generic-recommended, needed for ulem style
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -12,13 +20,10 @@ RUN apt-get update && \
     rm pandoc* && \
     apt-get install -y --no-install-recommends \
         texlive-base \
-        texlive-latex-extra \
-        texlive-latex-recommended \
-        texlive-fonts-recommended \
-        texlive-fonts-extra \
-        lmodern \
-        texlive-base \
         texlive-xetex \
+        lmodern \
+        texlive-fonts-recommended \
+        texlive-generic-recommended \
         && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

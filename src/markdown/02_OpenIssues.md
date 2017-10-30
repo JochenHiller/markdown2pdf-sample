@@ -12,10 +12,8 @@ These are the current issues which should be added to this template.
 * Code snippets with surrounding box
 * footnotes with multi lines
 * footline: add total pages right side
-* Cross-References: with refs instead of text matching
-* Cross-References, e.g. glossar, index
+* Index/Term: e.g. glossar, index
 * Tables with numbering and text
-* Control better page breaks
 * --variable toc-title="XXX" does not work
 * customized text for Table of Contents in customize.tex does not work
 
@@ -35,3 +33,14 @@ These are the current issues which should be added to this template.
 ```
 
 * Shrink Dockerfile to include only really needed packages (needs tryout)
+
+* Docker
+    * add fonts package to container `fonts-freefont-ttf`
+    * check why Palatino and other fonts does not work in container
+    * consider to use Google Noto fonts (see <https://www.google.com/get/noto/>)
+    * install fonts via tlmgr ?
+
+```
+# tlmgr init-usertree && \
+# tlmgr install collection-fontsrecommended && \
+``
