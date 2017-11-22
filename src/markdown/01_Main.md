@@ -154,6 +154,9 @@ public static void main(String[] args) {
 ```
 _ _ _
 
+
+
+
 ## Footnotes
 
 There is also support to add footnotes[^footnote1] within the document. Footnotes will be added to current page on the botton.[^footnoteWithLink]. Normally do not use any blanks between text and the footnote reference. Footnotes can also include multi lines, see here[^footnoteWithLongText]. This does not yet work really.
@@ -242,4 +245,6 @@ Table: Document change history
 | Version | Description     | Author        |
 +=========+=================+===============+
 | v01     | initial version | Jochen Hiller |
++---------+-----------------+---------------+
+| v02     | improvements    | Jochen Hiller |
 +---------+-----------------+---------------+

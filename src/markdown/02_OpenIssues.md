@@ -32,15 +32,41 @@ These are the current issues which should be added to this template.
   --template=template.latex \
 ```
 
-* Shrink Dockerfile to include only really needed packages (needs tryout)
+* Including source code from external file does not yet work
 
-* Docker
-    * add fonts package to container `fonts-freefont-ttf`
-    * check why Palatino and other fonts does not work in container
-    * consider to use Google Noto fonts (see <https://www.google.com/get/noto/>)
-    * install fonts via tlmgr ?
+You can also add source code from an external file, and even include some lines of code of that.
+For that purpose we need a pandoc extension "include-source", see <https://github.com/owickstrom/pandoc-include-code>
+
+Sample for given Dockerfile:
+
+```{include=../../Dockerfile}
+TODOO Some text should be overriden by Dockerfile
+```
+
+## Open issues for generating the docker image
+
+* Eliminate warnings during generate of Docker image
 
 ```
-# tlmgr init-usertree && \
-# tlmgr install collection-fontsrecommended && \
-``
+debconf: delaying package configuration, since apt-utils is not installed
+...
+Cannot determine type of tlpdb from /root/texmf!
+```
+
+* install fonts via tlmgr
+* `tlmgr install collection-fontsrecommended` does not work, will fail with error `tlmgr: updmap failed (status 1), output:`
+
+* these fonts are not supported within docker container
+
+```
+--variable mainfont="Palatino" \
+--variable sansfont="Helvetica" \
+--variable monofont="Menlo" \
+```
+
+* add fonts package to container `fonts-freefont-ttf`
+* consider to use Google Noto fonts (see <https://www.google.com/get/noto/>)
+
+
+* install and use "pandoc-include-code" filter: add code from external file
+  * `cabal install pandoc-include-code`

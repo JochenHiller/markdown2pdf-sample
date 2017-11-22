@@ -11,7 +11,6 @@ if [ "$1" == "" ] ; then
 # default is to build locally
 echo "Build locally..."
 
-
 # pandoc useful commandline calls to check its configuration
 #
 #   pandoc --list-input-formats
@@ -31,6 +30,7 @@ fi
 # generate relative to source folder
 cd src/markdown
 
+# lots of extensions needed
 set -x
 pandoc \
   --from=markdown_mmd\
@@ -51,9 +51,10 @@ pandoc \
 +auto_identifiers\
 +header_attributes\
   \
-  --latex-engine=xelatex \
+  --pdf-engine=xelatex \
   --include-in-header=customize.tex \
   --toc --toc-depth=3 --number-sections \
+  --filter pandoc-include-code \
   --variable lof \
   --variable lot \
   --standalone \
@@ -64,7 +65,7 @@ pandoc \
   --variable fontsize=12pt \
   --variable colorlinks \
   --variable urlcolor=blue \
-  --metadata date=v02 \
+  --metadata date="v02 - (Generated at `date "+%Y-%m-%d %H:%M:%S"`)" \
   --output=../../target/pdf/MarkdownToPDF.pdf \
    metadata.yaml 01_Main.md 02_OpenIssues.md
 set +x
@@ -75,7 +76,9 @@ cd ../..
 # open generated PDF on macOS to check build results when NOT running in docker
 which open >/dev/null
 if [ $? == 0 ] ; then
-  open target/pdf/MarkdownToPDF.pdf
+  if [ -f target/pdf/MarkdownToPDF.pdf ] ; then
+    open target/pdf/MarkdownToPDF.pdf
+  fi
 fi
 
 
@@ -84,9 +87,13 @@ elif [ "$1" == "docker" ] ; then
 echo "Build in docker container..."
 
 docker build -t toolchain-pandoc .
-# run build again without docker, map current folder to /source dir
+# run build again now within docker, map current folder to /source dir
 docker run -v `pwd`:/source toolchain-pandoc ./build.sh
 
+# open generated PDF on macOS to check build results when NOT running in docker
+if [ -f target/pdf/MarkdownToPDF.pdf ] ; then
+  open target/pdf/MarkdownToPDF.pdf
+fi
 
 elif [ "$1" == "clean" ] ; then
 # cleanup all generated files
